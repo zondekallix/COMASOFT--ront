@@ -1,0 +1,86 @@
+
+<div class="row">
+    <div class="col-6">
+      <label class="btn btn-default p-0">
+        <div><h5>Archivo .m de MatLab para el algoritmo</h5></div>
+        <input type="file" (change)="selectFile($event)" />
+      </label>
+    </div>
+    <div class="col-4">
+      <!--tabla hija para las opciones-->
+      <div class="container">
+        <div class="row">
+          <div class="col">        
+            <div><h5>Tipo Material</h5></div>
+            <div *ngFor="let tipo of this.tipomateriaservice.listadoTipos;let indexOfelement = index">
+              <input name="tipomaterial" ng-control="options" type="radio" [value]="tipo.idMtype" (click)="funciontipomaterial(tipo)"
+                [checked]="tipo.idMtype === tipomaterialseleccionado"> {{ tipo.nameMtype }}<br/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div><h5>Tipo Compuesto</h5></div>
+            <div *ngFor="let compuesto of tipocompuesto; let indexOfelement = index">
+              <input name="optionscompuesto" ng-control="options" type="radio" [value]="compuesto" (click)="funcioncompuesto(compuesto)"
+              [checked]="compuesto === tipocompuestoseleccionado"> {{ compuesto }}<br/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div><h5>Tipo Geometria del Compuesto</h5></div>
+            <div *ngFor="let geometria of tiposgeometria; let indexOfelement = index">
+              <input name="optionsgeometria" ng-control="options" type="radio" [value]="geometria" (click)="funciongeometria(geometria)"
+              [checked]="geometria === tipogeometriaseleccionado"> {{ geometria }}<br/>
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+    <div class="col-4">
+      <button class="btn btn-success btn-gb" [disabled]="!selectedFiles" (click)="uploadAndUpdate()">
+        Subir el algoritmo al servidor
+      </button>
+    </div>
+  </div>
+<hr>
+  <div *ngIf="currentFile" class="progress my-3">
+    <div
+      class="progress-bar progress-bar-info progress-bar-striped"
+      role="progressbar"
+      attr.aria-valuenow="{{ progress }}"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      [ngStyle]="{ width: progress + '%' }"
+    >
+      {{ progress }}%
+    </div>
+  </div>
+
+  <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
+  
+  <table class="table table-sm">
+    <thead>
+        <td>Nombre fichero</td>
+        <td>Descripcion</td>
+        <td>Tipo de Material</td>
+        <td>Tipo de Compuesto</td>
+        <td>Tipo de Geometria</td>
+    </thead>
+    <tr *ngFor="let file of uploadService.fileInfo;let indexOfelement = index" [class.highlighted]="file.idfile === actualidfile">
+        <td>{{ file.nombrefile }}</td>
+        <td>{{ file.descripcion }}</td>
+        <td>{{ file.idMtype }}</td>
+        <td>{{ file.tipocompuesto }}</td>
+        <td>{{ file.tipogeometria }}</td>
+        <td>
+            <i class="far fa-edit fa-lg text-info" (click)="editarfichero(file)" style="cursor: pointer;"></i>
+        </td>
+    </tr>
+  </table>
+  <div class="col-4">
+    <button class="btn btn-success btn-gb" [disabled]="actualizarcambios" (click)="actualizarcambiosfile()">
+      Actualizar los cambios
+    </button>
+  </div>

@@ -1,0 +1,36 @@
+<h6>Listado de Coeficientes disponibles</h6>
+<table class="table table-sm">
+    <thead>
+        <td>Coeficiente</td>
+        <td>Propiedad</td>
+        <td>Prefijo</td>
+        <td>Unidad Medida</td>
+    </thead>
+    <tr *ngFor="let tipo of this.coeficientetipoViewservice.coeficienteTipos;let indexOfelement = index"     
+            [class.highlighted]="tipo.nameCtype === currentCoeficiente">
+        <td>{{ tipo.nameCtype }}</td>
+        <td>{{ tipo.nameProperties }}</td>
+        <td>{{ tipo.prefix }}</td>
+        <td>{{ tipo.measureUnit }}</td>
+        <td>
+            <i class="fas fa-file-alt fa-lg text-info" style="cursor: pointer;" (click)="selectCoficiente($event, tipo.nameCtype, tipo)" ></i>
+        </td>
+    </tr>
+</table>
+<br>
+<hr>
+<h6>Listado de Simetrias Disponbiles</h6>
+<table class="table table-sm">
+    <thead>
+        <td>Nombre de la Simetria</td>
+        <td>Descripcion</td>
+    </thead>
+    <tr *ngFor="let tipo of this.symmetryListService.simmetryList;let indexOfelement = index"
+            [class.highlighted]="tipo.symmetryName === currentSimetria">
+        <td>{{ tipo.symmetryName }}</td>
+        <td>{{ tipo.descriptionSymmetry }}</td>
+        <td>
+            <i class="fas fa-file-alt fa-lg text-info" (click)="selectSimetria($event, tipo.symmetryName, tipo)" style="cursor: pointer;"></i>
+        </td>
+    </tr>
+  </table>

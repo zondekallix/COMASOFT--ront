@@ -1,0 +1,53 @@
+<p>Coeficientes Disponibles</p>
+
+
+<form [formGroup]="form" (ngSubmit)="agregarindices ()" >
+    <div class="input-group">
+        <select  class="form-select" aria-label="Default select" formArrayName="idSymmetry" (change)="onChangeDropSimetria( $event )">
+            <option [ngValue]= null enabled = false>Seleccione Coeficiente</option>
+            <option *ngFor="let tipocoeficiente of this.coeficientetypeservice.coeficienteTipos" [value]="tipocoeficiente.idCtype" [ngValue]="tipocoeficiente.idCtype">
+                {{ tipocoeficiente.nameCtype }}
+            </option>
+        </select>
+    </div>
+
+<!--     <div class="input-group">
+        <div class="input-group">
+            <p>Seleccione los indices que quiere asociar</p>
+        </div>
+        <hr>
+        <div class="input-group">
+            <div>
+                <div class="visibilidadvisible"  *ngFor="let tipocoeficiente of this.indicesdisponibles; let i = index" >
+                    <label>
+                      <a>Indice: </a>
+                      <input type="checkbox" class="checkbox" [checked]="false" name="checkboxindices" [value] = "tipocoeficiente.idIndex" (change)="checkValue()" />
+                      {{ tipocoeficiente.indexNumber }}
+                    </label>
+                  </div>
+              </div>
+
+        </div>
+
+
+
+    </div> -->
+
+
+    <!-- <div class="input-group">
+        <div style="width: 100%">
+            <ng-multiselect-dropdown
+                [settings]="dropdownSettings"
+                [data]="dropdownList">
+            </ng-multiselect-dropdown>
+        </div>
+
+    </div> -->
+
+    <div class="form-group">
+        <button class="btn btn-success btn-lg btn-block" type="submit"  [hidden]="this.indicesdisponibles.length===0"><i class="fas fa-database"></i>  Agregar Indices</button>
+    </div>
+
+</form>
+
+<!-- <input type="checkbox" *ngFor="let tipocoeficiente of this.coeficientetypeservice.coeficienteTipos" >{{ tipocoeficiente.nameCtype }} -->

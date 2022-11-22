@@ -1,0 +1,16 @@
+<table class="table table-sm">
+  <thead>
+      <td>Nombre de la Simetria</td>
+      <td>Descripcion</td>
+  </thead>
+  <tr *ngFor="let tipo of this.symmetryListService.simmetryList;let indexOfelement = index">
+      <td>{{ tipo.symmetryName }}</td>
+      <td>{{ tipo.descriptionSymmetry }}</td>
+      <td>
+          <i class="far fa-edit fa-lg text-info" (click)="editarTipo(tipo)" style="cursor: pointer;"></i>
+      </td>
+      <td>
+          <i class="far fa-trash-alt fa-lg text-danger" (click)="eliminarTipo(tipo.idSymmetry || 0)" style="cursor: pointer;"></i>
+      </td>
+  </tr>
+</table>

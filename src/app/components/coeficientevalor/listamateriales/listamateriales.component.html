@@ -1,0 +1,18 @@
+<table class="table table-sm">
+    <thead>
+        <td>Material</td>
+        <td>Tipo</td>
+        <td>Simetria</td>
+    </thead>
+    <tr *ngFor="let tipo of this.tipoMaterialViewservice.tipoMaterialView;let indexOfelement = index"     
+            [class.highlighted]="tipo.idMaterial === currentMaterialId">
+        <td>{{ tipo.nameMaterial }}</td>
+        <td>{{ tipo.nameMType }}</td>
+        <td>{{ tipo.symmetryName }}</td>
+        <td>
+            <i class="fas fa-file-alt fa-lg text-info" style="cursor: pointer;" (click)="selectMaterial($event, tipo.idMaterial, tipo)" ></i>
+        </td>
+    </tr>
+</table>
+<br>
+<hr>

@@ -1,0 +1,17 @@
+
+<table class="table table-sm">
+    <thead>
+        <th>Tipo de Material</th>
+        <th>Descripcion del Material</th>
+    </thead>
+    <tr *ngFor="let tipo of this.tipomateriaservice.listadoTipos;let indexOfelement = index"  [class.highlighted]="tipo.idMtype === currentidMtype">
+        <td>{{ tipo.nameMtype }}</td>
+        <td>{{ tipo.descriptionMtype }}</td>
+        <td>
+            <i class="far fa-edit fa-lg text-info" (click)="editarTipo(tipo)" style="cursor: pointer;"></i>
+        </td>
+        <td>
+            <i class="far fa-trash-alt fa-lg text-danger" (click)="eliminarTipo(tipo.idMtype || 0)" style="cursor: pointer;"></i>
+        </td>
+    </tr>
+</table>

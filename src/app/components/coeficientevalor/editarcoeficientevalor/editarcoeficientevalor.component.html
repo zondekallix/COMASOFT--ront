@@ -1,0 +1,22 @@
+
+
+<p>Listado de Valores de Coeficientes</p>
+
+
+    <div *ngFor="let coeficiente of this.tiposcoeficientesservice.coeficienteTipos;let indextipocoef = index">
+        <div>
+            Tipo Coeficiente: {{coeficiente.nameCtype}} ({{coeficiente.measureUnit}}) Tipo: {{coeficiente.nameProperties}} 
+            
+        </div>
+        <div>
+            <app-tablavalor [currentMaterialId]="this.internalservice.currentMaterialId" [idCtypeSeleccionado]="coeficiente.idCtype" [prefijo]="coeficiente.prefix"></app-tablavalor>
+        </div>
+    <div>
+        
+   
+    
+    
+
+
+<br>
+<hr>

@@ -1,0 +1,25 @@
+<table class="table table-sm">
+    <thead>
+        <td>Coeficiente</td>
+        <td>Indice</td>
+        <td>Valor</td>
+    </thead>
+    <tr *ngFor="let coeficientevalor of this.c;let index = index"
+            [class.highlighted]="coeficientevalor.idCoefficient === currentValorId">
+        <!-- <td>{{ coeficientevalor.idCtype }}</td>
+        <td>{{ coeficientevalor.idCoefficient }}</td> -->
+        <td>{{prefijo}}{{ coeficientevalor.index }}</td>
+        <td>
+            <input type="text" class="form-control" placeholder="Material" [(ngModel)]="this.c[index].value"><!-- [(ngModel)]="this.coeficientevalorservice.coeficientesvalor[index].value" -->
+
+       <!--  <td>
+            <i class="fas fa-file-alt fa-lg text-info" style="cursor: pointer;" (click)="select($event, coeficientevalor.idCoefficient , coeficientevalor)" ></i>
+        </td> -->
+        <td>
+            <i class="fas fa-spell-check text-info" (click)="actualizar (coeficientevalor.idCoefficient|| 0, coeficientevalor)" style="cursor: pointer;"></i>
+        </td>
+        <td>
+            <i class="far fa-trash-alt fa-lg text-danger" (click)="eliminarTipo(coeficientevalor.idCoefficient|| 0)" style="cursor: pointer;"></i>
+        </td>
+    </tr>
+</table>

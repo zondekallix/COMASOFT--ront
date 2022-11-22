@@ -1,0 +1,27 @@
+
+
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <div><h5>Tipos de Materiales</h5></div>
+        <app-listado-tipo-material></app-listado-tipo-material>
+      </div>
+      <div class="col">
+        <div><h5>Modificar o Adicionar Material</h5></div>
+        <app-editar-tipomaterial></app-editar-tipomaterial>
+    </div>
+    <div class="col">
+          
+    </div>
+    </div>
+    <div class="row">
+        <div class="col">
+          <div><h5>Tipos de Coeficientes Asociados</h5></div>
+          <app-materialtipocoef [currentidMtypeIn]="this.serviciointernoeditarmaterial.currentidMtypeService"></app-materialtipocoef>
+        </div>
+        
+        <div class="col">
+                
+        </div>
+      </div>
+</div>

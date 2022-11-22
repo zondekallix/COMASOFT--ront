@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <div><h5>Materiales</h5></div>
+        <!--tabla interna-->
+        <div class="container">
+            <div class="row">
+              <div class="col">
+                <div><h5>Listado de Materiales</h5></div>
+                <app-listamateriales></app-listamateriales>
+              </div>
+              
+            <div class="col">
+                <app-editmateriales></app-editmateriales>
+            </div>
+            </div>
+        </div>
+        <!--tabla interna-->
+      </div>
+      <div class="col">
+        <div><h5>Indices asociados al material</h5></div>
+        <app-editarcoeficientevalor></app-editarcoeficientevalor>
+       
+        <app-coeficientedisponible [idSimetriaInput]="this.internalservice.idSymmetry"></app-coeficientedisponible>
+    </div>
+    <div class="col">
+          
+    </div>
+    </div>
+</div>

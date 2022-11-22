@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div><h5>Coeficientes y Simetrias</h5></div>
+            <app-listado></app-listado>
+        </div>
+        <div class="col">
+            <div><h5>Coeficientes Asociados</h5></div>
+            <!--tabla interna-->
+            <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <div><h5></h5></div>
+                    <app-editar
+                    [CoefficientTypesInput]="this.indiceservice.currentCoeficiente"
+                    [SimetriaInput]="this.indiceservice.currentSimetria"
+                    ></app-editar>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div><h5>Modificar o Adicionar Indices</h5></div>
+                        <app-editarindice></app-editarindice>
+                    </div>
+                </div>
+            </div>
+            <!--tabla interna-->
+        </div>
+        <div class="col">
+            
+        </div>
+    </div>
+</div>
+
+

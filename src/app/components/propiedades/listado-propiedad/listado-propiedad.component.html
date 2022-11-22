@@ -1,0 +1,14 @@
+<table class="table table-sm">
+  <thead>
+      <td>Nombre de la Propiedad</td>
+  </thead>
+  <tr *ngFor="let tipo of this.propertyListservice.propertyList;let indexOfelement = index">
+      <td>{{ tipo.nameProperties }}</td>
+      <td>
+          <i class="far fa-edit fa-lg text-info" (click)="editarTipo(tipo)" style="cursor: pointer;"></i>
+      </td>
+      <td>
+          <i class="far fa-trash-alt fa-lg text-danger" (click)="eliminarTipo(tipo.idProperties || 0)" style="cursor: pointer;"></i>
+      </td>
+  </tr>
+</table>

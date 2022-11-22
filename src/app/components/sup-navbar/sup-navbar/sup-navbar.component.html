@@ -1,0 +1,51 @@
+
+<nav class="navbar navbar-static-top navbar-expand-lg"> <!-- navbar fixed-top navbar-expand-lg navbar-light bg-light -->
+  <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/home">COMaSoft</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        (click)="basicNav.toggle()"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+      <div
+        class="collapse navbar-collapse"
+        id="navbarNav"
+        mdbCollapse
+        #basicNav="mdbCollapse"
+      >
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/fibrousdesigner">Diseño Fibroso</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/laminatedesigner">Diseño Laminar</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/homogenero">HMA</a>
+
+
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/">Materiales</a>
+          </li> -->
+          <li class="nav-item">
+              <select class="noborder" (change)="onChangeDrop( $event )">
+                <option [value]="">Parametros</option>
+                <option *ngFor="let menu of elementosdropmenu" [value]="menu.link">
+                  <a>{{ menu.informacion }}</a>
+                </option>
+              </select>
+
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/informacion">Acerca de..</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>

@@ -1,0 +1,146 @@
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div><h5>Materiales Disponibles</h5></div>
+      <form [formGroup]="form" (ngSubmit)="makeRequest ()" >
+        <table class="table table-sm">
+          <thead>
+              <th>Material</th>
+              <th>Descripcion</th>
+          </thead>
+          <tr *ngFor="let tipo of this.materialService.materiales;let indexOfelement = index">
+              <td>{{ tipo.nameMaterial }}</td>
+              <td>{{ tipo.description }}</td>
+              <td>
+                  <i class="fas fa-plus fa-lg iconcolorred" style="cursor: pointer;" (click)="addToMaterialList(tipo)" ></i>
+              </td>
+          </tr>
+      </table>
+      </form>
+    </div>
+    <div class="col">
+
+     <div class="col">
+        <img class="imagefibra" *ngIf="idGeometry === 2" src="/assets/img/paralelo.png" alt="image"/>
+        <img class="imagefibra" *ngIf="idGeometry === 1" src="/assets/img/serie.png" alt="image">
+    </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div><h5>Materiales Seleccionados por capas</h5></div>
+      <table class="table table-sm">
+        <thead>
+          <th>Material</th>
+          <th>Descripcion</th>
+      </thead>
+        <tr *ngFor="let tipo of this.materialList;let indexOfelement = index"
+        [class.highlighted]="indexOfelement === selectMaterialIndex">
+            <td>{{ tipo.nameMaterial }}</td>
+            <td>{{ tipo.description }}</td>
+            <td><input class="form-control cuadrotexto" type="Number" id="fraction" name="fraction" [(ngModel)]="fractionList[indexOfelement]" (change)="validateButton()"></td>
+            <td><i class="fas fa-file-alt fa-lg text-info" style="cursor: pointer;" (click)="watchMaterial(tipo,indexOfelement)" ></i></td>
+            <td><i class="fas fa-minus fa-lg iconcolorble" style="cursor: pointer;" (click)="deleteMaterialList(indexOfelement)" ></i></td>  <!-- fa-spin -->
+        </tr>
+        <td>
+          <br>
+          <hr>
+          <button class="btn btn-success btn-lg btn-block" [disabled]="!botonvalido" type="submit"><i class="fas fa-calculator"></i>  Generar Resultado</button>
+          <hr>
+          <button class="btn btn-success btn-lg btn-block" [disabled]="!botonvalido" (click)="saveMaterial()"><i class="fas fa-calculator"></i>  Ejecución Multiple</button>
+      </td>
+      </table>
+    </div>
+    <div class="col">
+      <!-- tabla interna -->
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div><h5>Orden de las capas</h5></div>
+              <table class="table table-sm">
+                <tr [class.highlighted]="idGeometry === 1">
+                  <td>Serie</td>
+                  <td>
+                    <i class="fas fa-file-alt fa-lg text-info" style="cursor: pointer;" (click)="selectGeometry(1)" ></i>
+                  </td>
+                </tr>
+                <tr [class.highlighted]="idGeometry === 2">
+                  <td>Paralelo</td>
+                  <td>
+                    <i class="fas fa-file-alt fa-lg text-info" style="cursor: pointer;" (click)="selectGeometry(2)" ></i>
+                  </td>
+                </tr>
+              </table>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div><h5>Tipo de Material</h5></div>
+              <div *ngFor="let materialTypes of materialTypesService.listadoTipos; let indexOfelement = index">
+                <input name="optionsmaterial" ng-control="options" type="radio" [value]="materialTypes" (click)="materialTypeSelector( materialTypes)"> {{ materialTypes.nameMtype }}<br/>
+              </div>
+              <div *ngIf="mostrarFuncion"></div>
+            
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div><h5>Seleccione Funcion</h5></div>
+            <div class="input-group">
+              <!--<input type="text" class="form-control" formControlName="idProperties" placeholder="Propiedad asociada" maxlength="80">-->
+
+              <select  class="form-select" aria-label="Default select" (change)="functionSelector( $event )">
+                  <option [ngValue]= null enabled = false>Seleccione función que desea utilizar</option>
+                  <option *ngFor="let function of algorithmService.filtredData; let indexOfelement = index" [ngValue]="function" [value] = "function.nombrefile"
+                      [selected] = "function.nombrefile === this.functionName">
+                      {{ function.nombrefile }}
+                  </option>
+              </select>
+            
+          </div>
+        </div>
+    </div>
+
+      <!-- tabla interna -->
+      
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div><h5>Valores por indices</h5></div>
+      <table class="table table-sm">
+        <thead>
+            <td>Index</td>
+            <td>Value</td>
+        </thead>
+        <tr *ngFor="let coeff of coefficientService.coeficientesvalorbyIdMaterial;let indexOfelement = index">
+            <td>{{ coeff.index }}</td>
+            <td>{{ coeff.value }}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col">
+      <div><h5>Coeficientes Resultantes</h5></div>
+      <table class="table table-sm">
+        <thead>
+            <td>Coeficientes</td>
+        </thead>
+        <div *ngIf="functionResults!=undefined">
+          <tr *ngFor="let tipo of this.functionResults.data;let indexOfelement = index">
+            <td>{{functionResults.coeff[indexOfelement]}}</td>
+              <td>{{ tipo }}</td>
+          </tr>
+        </div>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+

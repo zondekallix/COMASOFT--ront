@@ -1,0 +1,13 @@
+<form [formGroup]="form" (ngSubmit)="guardarTipo ()" >
+  <div class="form-group">
+      <div class="input-group">
+          <input type="text" class="form-control" formControlName="symmetryName" placeholder="Symmetry Name" maxlength="80">
+          <hr>
+          <input type="text" class="form-control" formControlName="descriptionSymmetry" placeholder="Description" maxlength="600">
+      </div>
+  </div>
+  <div class="form-group">
+    <br>
+      <button class="btn btn-success btn-lg btn-block" [disabled]="form.invalid" type="submit"><i class="fas fa-database"></i>  Aceptar</button>
+  </div>
+</form>

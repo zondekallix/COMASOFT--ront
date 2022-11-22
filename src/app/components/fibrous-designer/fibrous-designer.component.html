@@ -1,0 +1,129 @@
+<form [formGroup]="form" (ngSubmit)="makeRequest ()" >
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div><h5>Material Matrix</h5></div>
+        <app-listado-materiales (newItemEventM)="assignMatrix($event)"></app-listado-materiales>
+      </div>
+      <div class="col">
+        <div><h5>Presion de volumen de la fibra</h5></div>
+        <input type="number" class="form-control stilofraccioninput" formControlName="fraction" (input)="asignarFraction ( )" placeholder="Fraccion">
+        <hr>
+        <button class="btn btn-success btn-lg btn-block" [disabled]="!botonvalido" type="submit"><i class="fas fa-calculator"></i>  Generar Resultado</button>
+        <hr>
+        <button class="btn btn-success btn-lg btn-block" [disabled]="!botonvalido" (click)="makeRequestMultiple()"><i class="fas fa-calculator"></i>  Ejecución Multiple</button>
+      </div>
+      <div class="col">
+        <img class="imagefibra" *ngIf="idGeometry === 1" src="/assets/img/HexImg.png" alt="image">
+        <img class="imagefibra" *ngIf="idGeometry === 2" src="/assets/img/SqrImg.png" alt="image"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div><h5>Material Fibra</h5></div>
+        <app-listado-materiales (newItemEventM)="assignFibre($event)"></app-listado-materiales>
+      </div>
+      <div class="col">
+        <div><h5>Tipo de Material</h5></div>
+        <div *ngFor="let materialTypes of materialTypesService.listadoTipos; let indexOfelement = index">
+          <input name="optionsmaterial" ng-control="options" type="radio" [value]="materialTypes" (click)="materialTypeSelector( materialTypes)"> {{ materialTypes.nameMtype }}<br/>
+        </div>
+        <div *ngIf="mostrarFuncion"></div>
+        <div><h5>Seleccione Funcion</h5></div>
+        <div class="input-group">
+          <!--<input type="text" class="form-control" formControlName="idProperties" placeholder="Propiedad asociada" maxlength="80">-->
+
+          <select  class="form-select" aria-label="Default select" (change)="functionSelector( $event )">
+              <option [ngValue]= null enabled = false>Seleccione función que desea utilizar</option>
+              <option *ngFor="let function of algorithmService.filtredData; let indexOfelement = index" [ngValue]="function" [value] = "function.nombrefile"
+                  [selected] = "function.nombrefile === this.functionName">
+                  {{ function.nombrefile }}
+              </option>
+          </select>
+    </div>
+      </div>
+      <div class="col">
+        <!-- tabla dentro de la celda -->
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <div><h5>Tipo de Fibra</h5></div>
+              <table class="table table-sm">
+                <tr [class.highlighted]="idGeometry === 1">
+                  <td>Hexagonal</td>
+                  <td>
+                    <i class="fas fa-file-alt fa-lg text-info" style="cursor: pointer;" (click)="selectGeometry(1)" ></i>
+                  </td>
+                </tr>
+                <tr [class.highlighted]="idGeometry === 2">
+                  <td>Cuadrada</td>
+                  <td>
+                    <i class="fas fa-file-alt fa-lg text-info" style="cursor: pointer;" (click)="selectGeometry(2)" ></i>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div><h5>Angulo</h5></div>
+              <div *ngFor="let angulo of angulos; let indexOfelement = index">
+                <input name="options" ng-control="options" type="radio" [value]="angulo" (click)="funcionangulo( angulo)"> {{ angulo }}<br/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- tabla dentro de la celda -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div><h5>Coeficientes Matrix</h5></div>
+        <app-listar-coeficientes [idMaterial]="idMatrix" ></app-listar-coeficientes>
+      </div>
+      <div class="col">
+        <div><h5>Coeficientes Fibra</h5></div>
+        <app-listar-coeficientes [idMaterial]="idFibrous"></app-listar-coeficientes>
+      </div>
+      <div class="col">
+        <div><h5>Material Resultante</h5></div>
+        <td *ngIf="showCoeff">
+          <table class="table table-sm">
+            <div *ngIf="functionResults!=undefined && functionResults.msg ===1">
+                <tr *ngFor="let tipo of this.functionResults.data;let indexOfelement = index">
+                  <td>{{functionResults.coeff[indexOfelement]}}</td>
+                    <td>{{ tipo }}</td>
+                </tr>
+              </div>
+            </table>
+
+          </td>
+
+          <div *ngIf="functionResults!= undefined && functionResults.msg === -1">Error en el calculo del resultado debido a un error en el procesamiento</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div *ngIf="this.multipleResults;">
+
+          <table class="table table-sm">
+            <tr>
+              <td>Vol</td>
+              <td *ngFor="let coefficient of this.multipleResults.coeff" > {{ coefficient }}</td>
+            </tr>
+            <tr *ngFor="let data of this.multipleResults.data;let indexOfelement = index">
+              <td> {{ indexOfelement/10 }}</td>
+              <td *ngFor="let elem of data;let indexOfelement2 = index">
+                {{ elem | number: '1.0-10'}}
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+</div>
+</form>
+
+
+
+

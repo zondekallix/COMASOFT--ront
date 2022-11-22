@@ -1,0 +1,24 @@
+<p>Listado Indices de Coeficientes asociados</p>
+<table class="table table-sm table-hover ">
+    <thead>
+        <td>Prefijo</td>
+        <td></td>
+
+    </thead>
+    <div *ngIf="this.indiceservice.currentCoeficiente != undefined">
+    <tr *ngFor="let indice of this.plantillaindice.indices">
+
+        <td>{{ this.indiceservice.currentCoeficiente.prefix + indice.indexNumber }}</td>
+        <td>
+            <i class="far fa-edit fa-lg text-info" (click)="editarTipo(indice)" style="cursor: pointer;"></i>
+            <i class="far fa-trash-alt fa-lg text-danger" (click)="eliminarTipo(indice.idIndex || 0)" style="cursor: pointer;"></i>
+        </td>
+    </tr>
+   </div>
+
+
+</table>
+
+<br>
+<hr>
+

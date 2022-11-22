@@ -1,0 +1,17 @@
+<table class="table table-sm">
+    <thead>
+        <td>Material</td>
+        <td>Description</td>
+    </thead>
+    <tr *ngFor="let tipo of this.materialService.materiales;let indexOfelement = index"
+            [class.highlighted]="tipo.nameMaterial === currentMaterialMatrix"
+            >
+        <td>{{ tipo.nameMaterial }}</td>
+        <td>{{ tipo.description }}</td>
+        <td>
+            <i class="fas fa-file-alt fa-lg text-info" style="cursor: pointer;" (click)="selectMatrix($event, tipo)" ></i>
+        </td>
+    </tr>
+</table>
+<br>
+<hr>

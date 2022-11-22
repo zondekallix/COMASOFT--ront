@@ -1,0 +1,34 @@
+<form [formGroup]="form" (ngSubmit)="guardarTipo ()">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="text" class="form-control" formControlName="nameCtype" placeholder="Nombre del Coeficiente" maxlength="80">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="input-group">
+            <input type="text" class="form-control" formControlName="prefix" placeholder="Prefijo" maxlength="80">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="input-group">
+            <input type="text" class="form-control" formControlName="measureUnit" placeholder="Unidad de Medida" maxlength="80">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="input-group">
+            <!--<input type="text" class="form-control" formControlName="idProperties" placeholder="Propiedad asociada" maxlength="80">-->
+        
+            <select  class="form-select" aria-label="Default select" formArrayName="idProperties" (change)="onChangeDrop( $event )">
+                <option [ngValue]= null enabled = false>Seleccione una propiedad</option>
+                <option *ngFor="let material of this.propiedadservice.propertyList" [value]="material.idProperties" [ngValue]="material.idProperties"
+                    [selected] = "material.idProperties === this.idselected">
+                    {{ material.nameProperties }}
+                </option>
+            </select>
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <button class="btn btn-success btn-lg btn-block" type="submit"><i class="fas fa-database"></i>  Aceptar</button>
+    </div>
+</form>

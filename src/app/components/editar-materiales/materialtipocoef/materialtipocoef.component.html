@@ -1,0 +1,25 @@
+
+<table class="table table-sm">
+    <thead>
+        <th>Coeficiente</th>
+        <th>Propiedad</th>
+        <th>Prefijo</th>
+        <th>Unidad Medida</th>
+    </thead>
+    <tr *ngFor="let tipo of this.coeficientetipoViewservice.coeficienteTipos;let indexOfelement = index">
+        <td>{{ tipo.nameCtype }}</td>
+        <td>{{ tipo.nameProperties }}</td>
+        <td>{{ tipo.prefix }}</td>
+        <td>{{ tipo.measureUnit }}</td>
+        <td>
+            <input type="checkbox" class="checkbox" [checked]="chk" [(ngModel)]="chk" name="checkboxtiposcoef" [value]="tipo.idCtype"
+            (change)="checkValue( this.coeficientetipoViewservice.coeficienteTipos , tipo.idCtype, $event)">
+        </td>
+       <!--  <td>
+            <i class="far fa-edit fa-lg text-info" (click)="editarTipo (tipo)" style="cursor: pointer;"></i>
+        </td>
+        <td>
+            <i class="far fa-trash-alt fa-lg text-danger" (click)="eliminarTipo(tipo.idCtype || 0)" style="cursor: pointer;"></i>
+        </td> -->
+    </tr>
+</table>

@@ -1,0 +1,12 @@
+<table class="table table-sm">
+  <thead>
+      <td>Index</td>
+      <td>Value</td>
+  </thead>
+  <tr *ngFor="let coeff of this.coeffList;let indexOfelement = index">
+      <td>{{ coeff.index }}</td>
+      <td>{{ coeff.value }}</td>
+  </tr>
+</table>
+<br>
+<hr>
